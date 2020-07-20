@@ -1,0 +1,62 @@
+{% extends "dy0.html" %}
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENG CMU COVID CHECK</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap');
+
+        body {
+            font-family: 'Prompt', sans-serif;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var intervalID = setInterval(update_values, 1000);
+
+        function update_values() {
+            $.getJSON($SCRIPT_ROOT + '/_stuff',
+
+                function (data) {
+                    $('#result').text(data.result);
+                    console.log(data)
+                });
+
+        };
+
+
+
+        function stopTextColor() {
+            clearInterval(intervalID);
+        }
+
+    </script>
+
+</head>
+
+<body onload="update_values();">
+    <center>
+        <h1 style="font-size: 400%;">คณะวิศวกรรมศาสตร์ ยินดีต้อนรับ</h1>
+    </center>
+
+    <table style="margin-top: 5%;">
+        <tr>
+            <td><img src="http://raspberrypi.local:8000/stream.mjpg" width="640" height="480"></td>
+            <td style="font-size: 500%;color: red;width: 100%;text-align: center;">
+                <h1><span id="result">?</span></h1>
+            </td>
+        </tr>
+    </table>
+    <script>
+        document.getElementById("result").innerHTML;
+    </script>
+</body>
+
+</html>
+
+{% endblock %}
